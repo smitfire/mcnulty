@@ -41,11 +41,9 @@ def challenge_one():
 
 
 
-print challenge_one()
-
 # CHALLENGE TWO
-# data            = challenge_one()
-# train, test     = train_test_split(data, train_size = 0.8)
+data            = challenge_one()
+train, test     = train_test_split(data, train_size = 0.8)
 
 # print train.head(), test.head()
 
@@ -53,9 +51,34 @@ print challenge_one()
 
 # CHALLENGE THREE
 
-# me_range = list(xrange(1,17))
-# model = KNeighborsClassifier(n_neighbors=2)
+me_range = list(xrange(1,30))
 
-# for num in me_range:
-  # model = KNeighborsClassifier(n_neighbors=num)
+x_train  = train.iloc[:,1:]
+y_train  = train.iloc[:,0]
+
+x_test   = test.iloc[:,1:]
+y_test   = test.iloc[:,0]
+
+
+scores = []
+for num in me_range:
+  model   = KNeighborsClassifier(n_neighbors=num)
+  model.fit(x_train, y_train)
+  y_pred  = model.predict(x_test)
+  a_score = accuracy_score(y_test, y_pred)
+  scores.append((num, a_score))
+
+print scores
+print "K VALUE WITH HIGHEST ACCURACY:"
+scores.sort(key=lambda x: x[1])
+print scores[-1][0]
+print "Sorted scores list (k value, accuracy score)"
+print scores
+
+
+
+
+
+
+
 
