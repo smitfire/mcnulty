@@ -12,6 +12,8 @@ from sklearn import cross_validation
 from sklearn import datasets
 from sklearn import svm
 from sklearn.cross_validation import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 import seaborn as sns
 import statsmodels.api as sm
 import matplotlib as mpl
@@ -30,17 +32,30 @@ def challenge_one():
   df            = get_data(congressrl)
   df            = df.replace(['y'], [1])
   df            = df.replace(['n'], [0])
-  cat_counts    = df.stack().value_counts()
-  num_yes_votes = cat_counts[0]
-  num_no_votes  = cat_counts[1]
-  prob_yes      = "{0:.2f}".format(num_yes_votes/float(num_yes_votes+num_no_votes))
-  df            = df.replace(['?'], [prob_yes])
+  df = df.replace("?", np.nan)
+
+  for num in list(xrange(1,17)):
+      df[num] = df[num].replace(np.nan, df[num].mean())
+
   return df
 
 
 
-# CHALLENG TWO
-data            = challenge_one()
-train, test     = train_test_split(data, train_size = 0.8)
+print challenge_one()
 
-print train.head(), test.head()
+# CHALLENGE TWO
+# data            = challenge_one()
+# train, test     = train_test_split(data, train_size = 0.8)
+
+# print train.head(), test.head()
+
+
+
+# CHALLENGE THREE
+
+# me_range = list(xrange(1,17))
+# model = KNeighborsClassifier(n_neighbors=2)
+
+# for num in me_range:
+  # model = KNeighborsClassifier(n_neighbors=num)
+
