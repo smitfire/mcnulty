@@ -79,7 +79,7 @@ y_test   = test.iloc[:,0]
 
 # CHALLENGE FOUR
 
-scores = []
+# scores = []
 
 model   = LogisticRegression()
 model.fit(x_train, y_train)
@@ -87,14 +87,15 @@ y_pred  = model.predict(x_test)
 a_score = accuracy_score(y_test, y_pred)
 
 
-print "LOGISTIC REGRESSION TEST SCORE:"
-print a_score
+# print "LOGISTIC REGRESSION TEST SCORE:"
+# print a_score
 
 
 
 # CHALLENGE FIVE
-# num_dems, num_reps = data.stack().value_counts()[2], data.stack().value_counts()[3]
-# print num_dems, num_reps
+
+num_dems, num_reps = data.stack().value_counts()[2], data.stack().value_counts()[3]
+print num_dems, num_reps
 
 
 
