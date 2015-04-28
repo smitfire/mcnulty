@@ -94,8 +94,14 @@ a_score = accuracy_score(y_test, y_pred)
 
 # CHALLENGE FIVE
 
-num_dems, num_reps = data.stack().value_counts()[2], data.stack().value_counts()[3]
+num_dems, num_reps = df.stack().value_counts()[2], df.stack().value_counts()[3]
 print num_dems, num_reps
+df.head()
+ndf = df[[0, 1]]
+ndf.head()
+ndf2 = ndf.groupby([0]).count()
+ndf2.head()
+ndf2.plot(kind="bar")
 
 
 
