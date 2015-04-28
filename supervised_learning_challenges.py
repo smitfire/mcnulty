@@ -13,6 +13,7 @@ from sklearn import datasets
 from sklearn import svm
 from sklearn.cross_validation import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import seaborn as sns
 import statsmodels.api as sm
@@ -60,24 +61,40 @@ x_test   = test.iloc[:,1:]
 y_test   = test.iloc[:,0]
 
 
+# scores = []
+# for num in me_range:
+#   model   = KNeighborsClassifier(n_neighbors=num)
+#   model.fit(x_train, y_train)
+#   y_pred  = model.predict(x_test)
+#   a_score = accuracy_score(y_test, y_pred)
+#   scores.append((num, a_score))
+
+# print scores
+# print "K VALUE WITH HIGHEST ACCURACY:"
+# scores.sort(key=lambda x: x[1])
+# print scores[-1][0]
+# print "Sorted scores list (k value, accuracy score)"
+# print scores
+
+
+# CHALLENGE FOUR
+
 scores = []
-for num in me_range:
-  model   = KNeighborsClassifier(n_neighbors=num)
-  model.fit(x_train, y_train)
-  y_pred  = model.predict(x_test)
-  a_score = accuracy_score(y_test, y_pred)
-  scores.append((num, a_score))
 
-print scores
-print "K VALUE WITH HIGHEST ACCURACY:"
-scores.sort(key=lambda x: x[1])
-print scores[-1][0]
-print "Sorted scores list (k value, accuracy score)"
-print scores
+model   = LogisticRegression()
+model.fit(x_train, y_train)
+y_pred  = model.predict(x_test)
+a_score = accuracy_score(y_test, y_pred)
+
+
+print "LOGISTIC REGRESSION TEST SCORE:"
+print a_score
 
 
 
-
+# CHALLENGE FIVE
+# num_dems, num_reps = data.stack().value_counts()[2], data.stack().value_counts()[3]
+# print num_dems, num_reps
 
 
 
