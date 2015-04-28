@@ -81,10 +81,10 @@ y_test   = test.iloc[:,0]
 
 # scores = []
 
-model   = LogisticRegression()
-model.fit(x_train, y_train)
-y_pred  = model.predict(x_test)
-a_score = accuracy_score(y_test, y_pred)
+# model   = LogisticRegression()
+# model.fit(x_train, y_train)
+# y_pred  = model.predict(x_test)
+# a_score = accuracy_score(y_test, y_pred)
 
 
 # print "LOGISTIC REGRESSION TEST SCORE:"
@@ -94,15 +94,28 @@ a_score = accuracy_score(y_test, y_pred)
 
 # CHALLENGE FIVE
 
-num_dems, num_reps = df.stack().value_counts()[2], df.stack().value_counts()[3]
-print num_dems, num_reps
-df.head()
-ndf = df[[0, 1]]
-ndf.head()
-ndf2 = ndf.groupby([0]).count()
-ndf2.head()
-ndf2.plot(kind="bar")
 
+# df.head()
+# ndf = df[[0, 1]]
+# ndf.head()
+# ndf2 = ndf.groupby([0]).count()
+# ndf2.head()
+# ndf2.plot(kind="bar")
 
+# num_dems, num_reps = df.stack().value_counts()[2], df.stack().value_counts()[3]
 
+def dem_list(X):
+  return ("democrat "*len(X)).strip().split()
 
+def rep_list(X):
+  return ("republican "*len(X)).strip().split()
+
+model   = LogisticRegression()
+model.fit(x_train, y_train)
+y_pred  = dem_list(list(xrange(1,88)))
+a_score = accuracy_score(y_test, y_pred)
+y_pred  = rep_list(list(xrange(1,88)))
+b_score = accuracy_score(y_test, y_pred)
+
+#  Dems, Reps Score for Challenge 5
+print a_score, b_score
