@@ -2,7 +2,7 @@
 #  we need no spaces
 #  we need text before and after @
 
-import re 
+import re
 
 def email_valid(the_string):
   the_string = the_string.strip()
