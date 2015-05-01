@@ -44,21 +44,22 @@ def challenge_one():
 
 # CHALLENGE TWO
 data            = challenge_one()
-train, test     = train_test_split(data, train_size = 0.8)
+# train, test     = train_test_split(data, train_size = 0.8)
 
 # print train.head(), test.head()
 
+print data[1].mode() + 4
 
 
 # CHALLENGE THREE
 
-me_range = list(xrange(1,30))
+# me_range = list(xrange(1,30))
 
-x_train  = train.iloc[:,1:]
-y_train  = train.iloc[:,0]
+# x_train  = train.iloc[:,1:]
+# y_train  = train.iloc[:,0]
 
-x_test   = test.iloc[:,1:]
-y_test   = test.iloc[:,0]
+# x_test   = test.iloc[:,1:]
+# y_test   = test.iloc[:,0]
 
 
 # scores = []
@@ -104,18 +105,18 @@ y_test   = test.iloc[:,0]
 
 # num_dems, num_reps = df.stack().value_counts()[2], df.stack().value_counts()[3]
 
-def dem_list(X):
-  return ("democrat "*len(X)).strip().split()
+# def dem_list(X):
+#   return ("democrat "*len(X)).strip().split()
 
-def rep_list(X):
-  return ("republican "*len(X)).strip().split()
+# def rep_list(X):
+#   return ("republican "*len(X)).strip().split()
 
-model   = LogisticRegression()
-model.fit(x_train, y_train)
-y_pred  = dem_list(list(xrange(1,88)))
-a_score = accuracy_score(y_test, y_pred)
-y_pred  = rep_list(list(xrange(1,88)))
-b_score = accuracy_score(y_test, y_pred)
+# model   = LogisticRegression()
+# model.fit(x_train, y_train)
+# y_pred  = dem_list(list(xrange(1,88)))
+# a_score = accuracy_score(y_test, y_pred)
+# y_pred  = rep_list(list(xrange(1,88)))
+# b_score = accuracy_score(y_test, y_pred)
 
 #  Dems, Reps Score for Challenge 5
-print a_score, b_score
+# print a_score, b_score
