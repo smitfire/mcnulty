@@ -1,6 +1,7 @@
 import csv, urllib2
 from pprint import pprint as pp
 import codecs
+import numpy as np
 
 # url = "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/new.data"
 
@@ -47,6 +48,7 @@ def data_to_csv(total):
 def form_data(f):
     f= open(f, "r")
     rf = f.read().replace("\n", " ").replace(".","")
+    # rf = f.read().replace("\n", " ").replace(".","").replace("-9", "NaN")
     rf = rf.split("name")
     return [ item.split() for item in rf if len(item.split()) == 75]
 
