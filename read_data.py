@@ -37,30 +37,36 @@ def format_rows(f):
             # res2=[]
     return res_total
 
-def data_to_csv(total):
-    with open("data.csv", "wb") as movies:
+def data_to_csv(total, filename):
+    with open(filename, "wb") as movies:
         writer = csv.writer(movies)
-        header = read_headers()
+        # header = read_headers()
+        header = ['location', 'id','ccf','age','sex','painloc','painexer','relrest', 'pncaden','cp', 'trestbps', 'htn', 'chol','smoke', 'cigs', 'years', 'fbs', 'dm', 'famhist','restecg','ekgmo', 'ekgday', 'ekgyr', 'dig', 'prop', 'nitr', 'pro', 'diuretic','proto','thaldur','thaltime','met', 'thalach','thalrest','tpeakbps','tpeakbpd','dummy','trestbpd','exang','xhypo','oldpeak','slope','rldv5','rldv5e','ca','restckm','exerckm','restef','restwm','exeref','exerwm','thal','thalsev','thalpul','earlobe','cmo','cday','cyr','num','lmt','ladprox','laddist','diag','cxmain','ramus','om1','om2','rcaprox','rcadist','lvx1','lvx2','lvx3','lvx4','lvf','cathef','junk']
         writer.writerow(header)
         for i, row in enumerate(total):
             writer.writerow(row)
 
-def form_data(f):
+def form_data(f, location):
     f= open(f, "r")
-    rf = f.read().replace("\n", " ").replace(".","")
+    rf = f.read().replace("\n", " ")
     # rf = f.read().replace("\n", " ").replace(".","").replace("-9", "NaN")
-    rf = rf.split("name")
-    return [ item.split() for item in rf if len(item.split()) == 75]
+    rf = rf.split(" name")
+    return [ [location] + item.split() for item in rf if len(item.split()) == 75]
 
 
-hung = form_data("hungary.data")
-ch = form_data("switz.data")
-cleveland = form_data("cleveland.data")
+hung      = form_data("hung.data", "hungary")
+ch        = form_data("ch.data", "switzerland")
+longbeach = form_data("longbeach.data", "longbeach")
+cleveland = form_data("cleve.data", "cleveland")
 
-total = hung + ch + cleveland
+total = hung + ch + longbeach + cleveland
 
 
-data_to_csv(total)
-pp(total[0])
-print len(total[0])
+data_to_csv(total, "total2.csv")
+data_to_csv(cleveland, "cleve.csv")
+data_to_csv(ch, "ch.csv")
+data_to_csv(hung, "hung.csv")
+data_to_csv(longbeach, "longbeach.csv")
+
+# pp(total[0])
 
