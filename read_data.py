@@ -55,7 +55,7 @@ cleveland = form_data("cleve.data", "cleveland")
 total = hung + ch + longbeach + cleveland
 
 print total
-# data_to_csv(total, "total2.csv")
+data_to_csv(total, "total3.csv")
 # data_to_csv(cleveland, "cleve.csv")
 # data_to_csv(ch, "ch.csv")
 # data_to_csv(hung, "hung.csv")
